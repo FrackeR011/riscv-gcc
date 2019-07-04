@@ -415,7 +415,11 @@
 	(plus:ANYF (match_operand:ANYF 1 "register_operand" " f")
 		   (match_operand:ANYF 2 "register_operand" " f")))]
   "TARGET_HARD_FLOAT"
-  "fadd.<fmt>\t%0,%1,%2"
+  "fadd.<fmt>\t%0,%1,%2
+    frcsr\ta3
+	beqz\ta3, 2f
+	ebreak
+2:"
   [(set_attr "type" "fadd")
    (set_attr "mode" "<UNITMODE>")])
 
@@ -471,7 +475,11 @@
 	(minus:ANYF (match_operand:ANYF 1 "register_operand" " f")
 		    (match_operand:ANYF 2 "register_operand" " f")))]
   "TARGET_HARD_FLOAT"
-  "fsub.<fmt>\t%0,%1,%2"
+  "fsub.<fmt>\t%0,%1,%2
+    frcsr\ta3
+	beqz\ta3, 4f
+	ebreak
+4:"
   [(set_attr "type" "fadd")
    (set_attr "mode" "<UNITMODE>")])
 
@@ -562,7 +570,11 @@
 	(mult:ANYF (match_operand:ANYF    1 "register_operand" " f")
 		      (match_operand:ANYF 2 "register_operand" " f")))]
   "TARGET_HARD_FLOAT"
-  "fmul.<fmt>\t%0,%1,%2"
+  "fmul.<fmt>\t%0,%1,%2
+    frcsr\ta3
+	beqz\ta3, 1f
+	ebreak
+1:"
   [(set_attr "type" "fmul")
    (set_attr "mode" "<UNITMODE>")])
 
@@ -778,7 +790,11 @@
 	(div:ANYF (match_operand:ANYF 1 "register_operand" " f")
 		  (match_operand:ANYF 2 "register_operand" " f")))]
   "TARGET_HARD_FLOAT && TARGET_FDIV"
-  "fdiv.<fmt>\t%0,%1,%2"
+  "fdiv.<fmt>\t%0,%1,%2
+    frcsr\ta3
+	beqz\ta3, 3f
+	ebreak
+3:"
   [(set_attr "type" "fdiv")
    (set_attr "mode" "<UNITMODE>")])
 
