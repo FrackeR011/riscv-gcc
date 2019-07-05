@@ -52,6 +52,8 @@ Assembly instructions added for   fmul  : `
 
 Local labels are denoted by numbers. Here 1 is used for fmul instruction pattern.
 
+Programs to demonstrate various floating point exceptions are inside `examples` directory. After generating executable, Spike simulator is required to run it.
+
 This is a work in progress. Next steps should make following changes:
 - Changning register a3 to any arbitary register.
 - Option to enable or disable the change
