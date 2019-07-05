@@ -52,10 +52,9 @@ Assembly instructions added for   fmul  : `
 
 Local labels are denoted by numbers. Here 1 is used for fmul instruction pattern.
 
-This is a work in progress. Next steps include:
-Changning register a3 to any arbitary register.
-Option to enable or disable the change
-Better method should be used to exit from program
-More helpful error message should be displayed
-Option to enable or disable different floating point exception
-
+This is a work in progress. Next steps should make following changes:
+- Changning register a3 to any arbitary register.
+- Option to enable or disable the change
+- Better method should be used to exit from program
+- More helpful error message should be displayed
+- Option to enable or disable different floating point exception
