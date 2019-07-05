@@ -20,3 +20,15 @@ Copyright years on GCC source files may be listed using range
 notation, e.g., 1987-2012, indicating that every year in the range,
 inclusive, is a copyrightable year that could otherwise be listed
 individually.
+
+##Note
+This is a fork of riscv-gcc modified for handling floating point exceptions. 
+Changes were made in riscv.md. Following rtl expressions now generate breakpoints when **any** floating point exception occurs:
+- fmul
+- fadd
+- fdiv
+- fsub
+
+riscv.md is used to generate assembly instructions from RTL. It contains machine description consisting of rules for instruction selection and register allocation, pipeline description, and peephole optimizations. 
+
+This is a work in progress.
