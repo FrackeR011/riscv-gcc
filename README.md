@@ -23,7 +23,7 @@ individually.
 
 ### Note
 
-This is a fork of **riscv/riscv-gcc** modified for handling floating point exceptions. 
+This repository is clone of original [riscv-gcc](https://github.com/riscv/riscv-gcc) modified for handling floating point exceptions. 
 Changes were made in riscv.md. 
 
 Following floating point operations generate breakpoints when **any** floating point exception occurs:
