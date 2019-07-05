@@ -21,15 +21,41 @@ notation, e.g., 1987-2012, indicating that every year in the range,
 inclusive, is a copyrightable year that could otherwise be listed
 individually.
 
-## Note
+### Note
 
 This is a fork of riscv/riscv-gcc modified for handling floating point exceptions. 
-Changes were made in riscv.md. Following rtl expressions now generate breakpoints when **any** floating point exception occurs:
-- fmul
-- fadd
-- fdiv
-- fsub
+Changes were made in riscv.md. 
+Following floating point operations generate breakpoints when **any** floating point exception occurs:
+- multiplication
+- addition
+- substraction
+- division
 
-riscv.md is used to generate assembly instructions from RTL. It contains machine description consisting of rules for instruction selection and register allocation, pipeline description, and peephole optimizations. 
+riscv.md is used to generate assembly instructions from RTL. It contains machine description consisting of rules for instruction selection and register allocation, pipeline description, and peephole optimizations.
 
-This is a work in progress.
+Assembly instructions corresponding to following RTL instruction patterns correspoding to above listed has been changed:
+- `fmul`
+- `fadd`
+- `fdiv`
+- `fsub`
+
+#### Example
+Assembly instructions added for   fmul  : `
+```assembly
+  frcsr\ta3
+  beqz\ta3, 1f
+  ebreak
+1:
+```
+
+`frcsr` is used to read the content on Floating point Control and Status Register(FPCSR). Corresponding bit in FPCSR gets set when any floating point exception occurs. Branching occurs if no FPCSR is zero, skippinf the ebreak instruction which is responsible for generating breaking point.
+
+Local labels are denoted by numbers. Here 1 is used for fmul instruction pattern.
+
+This is a work in progress. Next steps include:
+Changning register a3 to any arbitary register.
+Option to enable or disable the change
+Better method should be used to exit from program
+More helpful error message should be displayed
+Option to enable or disable different floating point exception
+
